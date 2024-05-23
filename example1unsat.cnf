@@ -1,0 +1,5 @@
+c Example UNSAT DIMACS file
+p cnf 2 3
+1 0
+-1 0
+2 0
