@@ -51,12 +51,13 @@ def decision_procedure(cs, nvs):
                   if res == None: continue
                   if verbose:
                       print(f"resolved {res} from clauses {c1} and {c2} on variable {v}")
-                  if (res != None) and len(res) == 0: return(False,None)
-                  if not(res == None) and not (res in resolved):
+                  if len(res) == 0: return(False,None)
+                  if res not in resolved:
                       round_resolved.append(res)
-      resolved = resolved + round_resolved
+      if not round_resolved:
+          break
+      resolved.extend(round_resolved)
       to_be_resolved = round_resolved
-      if len(round_resolved) == 0:break
       #return(True, None)
   #2**nvs = 2^nvs
   i = 0
@@ -66,9 +67,11 @@ def decision_procedure(cs, nvs):
       assignment = []
   # v= 1,2,3,...,nvs
       for v in range(1, nvs + 1):
-          v = -v if i % 2 == 0 else v
-          assignment.append(v)
-          tmp == tmp // 2
+          if tmp % 2 == 0:
+              assignment.append(-v)
+          else:
+              assignment.append(v)
+          tmp = tmp // 2
       if verbose:
           print("Assignment:", assignment)
       if evaluate(cs, assignment):
