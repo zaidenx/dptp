@@ -5,6 +5,7 @@ from cnf import *
 
 verbose = False
 
+
 def resolve(c1, c2, v):
     b1= (v in c1) and (-v in c2)
     b2= (-v in c1) and(v in c2)
@@ -16,6 +17,7 @@ def resolve(c1, c2, v):
         if -x in c:
             return None
     return c
+
 
 def evaluate(cs, assignment):
     for c in cs:
@@ -42,6 +44,7 @@ def decision_procedure(cs, nvs):
   """
   resolved = cs
   to_be_resolved = cs
+  """
   while True:
       round_resolved = []
       for c1 in to_be_resolved:
@@ -60,6 +63,8 @@ def decision_procedure(cs, nvs):
       to_be_resolved = round_resolved
       #return(True, None)
   #2**nvs = 2^nvs
+"""
+
   i = 0
   m = 2**nvs
   while i < m:
